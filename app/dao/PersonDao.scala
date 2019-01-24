@@ -19,5 +19,15 @@ class PersonDao @Inject() (persons: Persons) {
       val personFuture = persons.getPerson(email)
       Await.result(personFuture, 3 second)
     }
+
+    def updateNameCountry(person: Person): Int = {
+      val personFuture = persons.update(person)
+      Await.result(personFuture, 5 seconds)
+    }
+
+    def deletePerson(email: String): Int = {
+      val personFuture = persons.delete(email)
+      Await.result(personFuture, 3 seconds)
+    }
   }
 }
